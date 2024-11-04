@@ -9,6 +9,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { Product } from "../../app/models/product";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -26,7 +27,7 @@ export default function ProductCard({ product }: Props) {
         title={product.name}
         titleTypographyProps={{
           sx: { fontWeight: "bold", color: "primary.main" },
-        }} // Postavi title unutar CardHeader
+        }} // Place title inside CardHeader
       />
       <CardMedia
         sx={{
@@ -35,7 +36,7 @@ export default function ProductCard({ product }: Props) {
           /*bgcolor: "primary.light",*/
         }}
         image={product.pictureUrl}
-        title={product.name} // Postavi title unutar CardMedia
+        title={product.name} // Place title inside CardMedia
       />
       <CardContent>
         <Typography gutterBottom color="secondary" variant="h5">
@@ -47,7 +48,9 @@ export default function ProductCard({ product }: Props) {
       </CardContent>
       <CardActions>
         <Button size="small">Add to cart</Button>
-        <Button size="small">View</Button>
+        <Button component={Link} to={`/catalog/${product.id}`} size="small">
+          View
+        </Button>
       </CardActions>
     </Card>
   );
